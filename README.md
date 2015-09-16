@@ -1,4 +1,4 @@
-GohT
+GoT
 ====
 Ruby App which bring Github to your terminal
 
