@@ -6,7 +6,7 @@ require 'optparse'
 
   options = {:repo => nil,:files =>nil,:readme =>nil,:followers =>nil ,:following=>nil,:archive=>nil}
 	optparse = OptionParser.new do |opts|
-  	opts.banner = "Usage: cli-github [options]"
+  	opts.banner = "Usage: gitty [options]"
   	opts.on('-l', '--repo <username>', 'List the repositories of the user') do |repo|
     	options[:repo] = repo
   	end
