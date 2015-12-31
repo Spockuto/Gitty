@@ -4,7 +4,7 @@ require 'json'
 require 'base64'
 require 'optparse'
 
-  options = {:repo => nil,:files =>nil,:readme =>nil,:followers =>nil ,:following=>nil,:archive=>nil}
+  options = {:repo => nil,:files =>nil,:readme =>nil,:followers =>nil ,:following=>nil,:archive=>nil , :contributors => nil}
 	optparse = OptionParser.new do |opts|
   	opts.banner = "Usage: gitty [options]"
   	opts.on('-l', '--repo <username>', 'List the repositories of the user') do |repo|
@@ -31,7 +31,7 @@ require 'optparse'
     	options[:archive] = archive
   	end
 
-  	opts.on('-c', '--contributors <username>/<repo>', 'Get the contributors of the repository') do |archive|
+  	opts.on('-c', '--contributors <username>/<repo>', 'Get the contributors of the repository') do |contributors|
     	options[:contributors] = contributors
   	end
 
