@@ -12,6 +12,7 @@ A Ruby Gem which brings Github on your Terminal
 	*	-i, --following username       List the people the user is following
 	*	-t, --archive username/repo  Get the tar file of the repository
 	*	-h, --help                       Help
+	*	-c, --contributors username/repo Get the contributors of the repository
 
 ## Contributing
 

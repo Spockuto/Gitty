@@ -31,6 +31,10 @@ require 'optparse'
     	options[:archive] = archive
   	end
 
+  	opts.on('-c', '--contributors <username>/<repo>', 'Get the contributors of the repository') do |archive|
+    	options[:contributors] = contributors
+  	end
+
   	opts.on('-h', '--help', 'Help') do
     	puts opts
     	exit
@@ -121,3 +125,20 @@ require 'optparse'
 		table = Terminal::Table.new :headings =>['Id','Users'] ,:rows => row
 		puts table
 	end
+
+	if(options[:contributors])
+		user = options[:contributors].split('/').first
+		repo = options[:contributors].split('/').last
+		url = "https://api.github.com/repos/#{user}/#{repo}/contributors"
+		row = []
+		iterator = 1
+		response = open(url).read
+		parse = JSON.parse(response)
+		parse.each do |name|
+			row << [iterator, name["login"]]
+			iterator = iterator + 1
+		end
+		table = Terminal::Table.new :headings =>['Id','Users'] ,:rows => row
+		puts table
+	end
+
