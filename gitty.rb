@@ -44,9 +44,8 @@ require 'optparse'
 	optparse.parse!
 
 	if(options[:readme])
-		user = options[:readme].split('/').first
-		repo = options[:readme].split('/').last
-		url = "https://api.github.com/repos/#{user}/#{repo}/readme"
+		name = options[:readme]
+		url = "https://api.github.com/repos/#{name}/readme"
 		response = open(url).read
 		data = JSON.parse(response)	
 		content = Base64.decode64(data["content"])
@@ -54,14 +53,13 @@ require 'optparse'
 	end
 
 	if(options[:files])
-		user = options[:files].split('/').first
-		repo = options[:files].split('/').last
-		url = "https://api.github.com/repos/#{user}/#{repo}/commits"
+		name = options[:files]
+		url = "https://api.github.com/repos/#{name}/commits"
 		response = open(url).read
 		data = JSON.parse(response)	
 		sha = data[0]['sha']
 		row =[]
-		url ="https://api.github.com/repos/#{user}/#{repo}/git/trees/#{sha}"
+		url ="https://api.github.com/repos/#{name}/git/trees/#{sha}"
 		response = open(url).read
 		data = JSON.parse(response)
 		data['tree'].each do |file|
@@ -89,9 +87,8 @@ require 'optparse'
 	end
 
 	if(options[:archive])
-		user = options[:archive].split('/').first
-		repo = options[:archive].split('/').last
-		url = "https://api.github.com/repos/#{user}/#{repo}/tarball"
+		name = options[:archive]
+		url = "https://api.github.com/repos/#{name}/tarball"
 		system("curl -L #{url} > #{repo}.tar.gz")
 		puts "File has been saved as #{repo}.tar.gz"
 	end
@@ -127,9 +124,8 @@ require 'optparse'
 	end
 
 	if(options[:contributors])
-		user = options[:contributors].split('/').first
-		repo = options[:contributors].split('/').last
-		url = "https://api.github.com/repos/#{user}/#{repo}/contributors"
+		name = options[:contributors]
+		url = "https://api.github.com/repos/#{name}/contributors"
 		row = []
 		iterator = 1
 		response = open(url).read
