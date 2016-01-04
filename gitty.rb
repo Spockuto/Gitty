@@ -35,6 +35,10 @@ require 'optparse'
     	options[:contributors] = contributors
   	end
 
+  	opts.on('-or','--organisations <username>','List the organisations which the user is part of') do |organisations|
+  		options[:organisations] = organisations
+  	end
+
   	opts.on('-h', '--help', 'Help') do
     	puts opts
     	exit
@@ -135,6 +139,22 @@ require 'optparse'
 			iterator = iterator + 1
 		end
 		table = Terminal::Table.new :headings =>['Id','Users'] ,:rows => row
+		puts table
+	end
+
+
+	if(options[:organisations])
+		name = options[:organisations]
+		url = "https://api.github.com/users/#{name}/orgs"
+		row = []
+		iterator = 1
+		response = open(url).read
+		parse = JSON.parse(response)
+		parse.each do |name|
+			row << [iterator, name["login"]]
+			iterator = iterator + 1
+		end
+		table = Terminal::Table.new :headings =>['Id','Organisations'] ,:rows => row
 		puts table
 	end
 
