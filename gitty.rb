@@ -27,7 +27,7 @@ require 'optparse'
     	options[:following] = following
   	end
 
-  	opts.on('-t', '--archive <username>/<repo>', 'Get the tar file of the repository') do |archive|
+  	opts.on('-z', '--archive <username>/<repo>', 'Get the tar file of the repository') do |archive|
     	options[:archive] = archive
   	end
 
@@ -35,8 +35,8 @@ require 'optparse'
     	options[:contributors] = contributors
   	end
 
-  	opts.on('-or','--organisations <username>','List the organisations which the user is part of') do |organisations|
-  		options[:organisations] = organisations
+  	opts.on('-or','--organizations <username>','List the organizations which the user is part of') do |organizations|
+  		options[:organizations] = organizations
   	end
 
   	opts.on('-h', '--help', 'Help') do
@@ -92,9 +92,9 @@ require 'optparse'
 
 	if(options[:archive])
 		name = options[:archive]
-		url = "https://api.github.com/repos/#{name}/tarball"
-		system("curl -L #{url} > #{repo}.tar.gz")
-		puts "File has been saved as #{repo}.tar.gz"
+		url = "https://api.github.com/repos/#{name}/zipball"
+		system("curl -L #{url} > #{name.split('/').last}.zip")
+		puts "File has been saved as #{name.split('/').last}.zip"
 	end
 
 	if(options[:followers])
@@ -143,8 +143,8 @@ require 'optparse'
 	end
 
 
-	if(options[:organisations])
-		name = options[:organisations]
+	if(options[:organizations])
+		name = options[:organizations]
 		url = "https://api.github.com/users/#{name}/orgs"
 		row = []
 		iterator = 1
@@ -154,7 +154,7 @@ require 'optparse'
 			row << [iterator, name["login"]]
 			iterator = iterator + 1
 		end
-		table = Terminal::Table.new :headings =>['Id','Organisations'] ,:rows => row
+		table = Terminal::Table.new :headings =>['Id','organizations'] ,:rows => row
 		puts table
 	end
 

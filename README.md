@@ -5,14 +5,15 @@ A Ruby Gem which brings Github on your Terminal
 
 ## Usage
 *	Usage: gitty [options]
-	*	-l, --repo username            List the repositories of the user
-	*	-f, --files username/repo    List the files of the Repositories
-	*	-r, --readme username/repo   Check the Readme of the Repository
-	*	-o, --followers username       List the followers of the user
-	*	-i, --following username       List the people the user is following
-	*	-t, --archive username/repo  Get the tar file of the repository
-	*	-h, --help                       Help
-	*	-c, --contributors username/repo Get the contributors of the repository
+	*	-l, --repo username            		List the repositories of the user
+	*	-f, --files username/repo    		List the files of the Repositories
+	*	-r, --readme username/repo   		Check the Readme of the Repository
+	*	-o, --followers username       		List the followers of the user
+	*	-i, --following username       		List the people the user is following
+	*	-z, --archive username/repo  		Get the zip file of the repository
+	*	-h, --help                      	Help
+	*	-c, --contributors username/repo 	Get the contributors of the repository
+	*	-or, --organizations username 		Get	the organizations of the repository
 
 ## Contributing
 
